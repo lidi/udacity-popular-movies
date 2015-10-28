@@ -1,0 +1,11 @@
+Udacity Android Developer Nanodegree Popular Movies Project
+
+Note: This repository will contain both P1 and P2 parts
+
+Note for instructors and code reviewers:
+Please create api_keys.xml in values folder with the following content:
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tmd_api_key">[Your TMD API key]</string>
+</resources>
