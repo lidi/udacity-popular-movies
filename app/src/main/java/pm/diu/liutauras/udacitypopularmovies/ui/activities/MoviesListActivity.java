@@ -1,15 +1,23 @@
 package pm.diu.liutauras.udacitypopularmovies.ui.activities;
 
+import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import java.util.List;
+import javax.inject.Inject;
 import pm.diu.liutauras.udacitypopularmovies.R;
+import pm.diu.liutauras.udacitypopularmovies.model.entities.Movie;
+import pm.diu.liutauras.udacitypopularmovies.presenters.MoviesListPresenter;
 import pm.diu.liutauras.udacitypopularmovies.views.MoviesListView;
 
 public class MoviesListActivity extends AppCompatActivity implements MoviesListView {
   @Bind(R.id.activity_movies_recycler) RecyclerView activity_movies_recycler;
+
+  @Inject MoviesListPresenter moviesListPresenter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +26,33 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListV
     ButterKnife.bind(this);
   }
 
+  @Override public void bindMoviesList(List<Movie> movies) {
+
+  }
+
+  @Override public void showMovieList() {
+
+  }
+
+  @Override public void hideMovieList() {
+
+  }
+
+  @Override public void showLoadingView() {
+
+  }
+
+  @Override public void hideLoadingView() {
+
+  }
+
+  @Override public void updateMoviesList(int moviesLimit) {
+
+  }
+
+  @Override public ActivityOptions getActivityOptions(int position, View clickedView) {
+    return null;
+  }
 }
 
 
