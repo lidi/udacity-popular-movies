@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <dimen name="insets">2dp</dimen>
-  <dimen name="spacing_normal">16dp</dimen>
+  <dimen name="insets">1dp</dimen>
+  <dimen name="spacing_normal">10dp</dimen>
 </resources>

@@ -28,16 +28,9 @@ public class Movie {
   private Float vote_average;
   private Integer vote_count;
 
-  private int posterResource;
-
   public String getPosterUri(){
     Log.v("Poster uri", Joiner.on("").skipNulls().join(Lists.newArrayList(IMAGE_BASE_URI, SIZE, poster_path)));
     return Joiner.on("").skipNulls().join(Lists.newArrayList(IMAGE_BASE_URI, SIZE, poster_path));
-  }
-
-  public int getPosterResource() {
-
-    return posterResource;
   }
 
   public Boolean getAdult() {
