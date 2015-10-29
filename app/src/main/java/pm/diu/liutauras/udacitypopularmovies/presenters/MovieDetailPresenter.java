@@ -3,6 +3,7 @@ package pm.diu.liutauras.udacitypopularmovies.presenters;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
+import pm.diu.liutauras.udacitypopularmovies.views.BaseView;
 
 public class MovieDetailPresenter implements Presenter, AdapterView.OnItemSelectedListener {
 
@@ -27,7 +28,7 @@ public class MovieDetailPresenter implements Presenter, AdapterView.OnItemSelect
 
   }
 
-  @Override public void attachView(pm.diu.liutauras.udacitypopularmovies.views.View v) {
+  @Override public void attachView(BaseView v) {
 
   }
 

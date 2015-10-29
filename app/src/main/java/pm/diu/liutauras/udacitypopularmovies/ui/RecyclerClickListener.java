@@ -1,7 +1,7 @@
 package pm.diu.liutauras.udacitypopularmovies.ui;
 
-import android.widget.ImageView;
+import android.view.View;
 
 public interface RecyclerClickListener {
-  void onElementClick(int position, ImageView characterImageView);
+  void onElementClick(int position, View clickedView);
 }

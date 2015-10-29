@@ -4,7 +4,7 @@ import android.app.ActivityOptions;
 import java.util.List;
 import pm.diu.liutauras.udacitypopularmovies.model.entities.Movie;
 
-public interface MoviesListView extends View{
+public interface MoviesListView extends BaseView {
 
   void bindMoviesList(List<Movie> movies);
 

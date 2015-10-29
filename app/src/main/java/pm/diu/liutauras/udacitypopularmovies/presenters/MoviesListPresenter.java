@@ -2,8 +2,12 @@ package pm.diu.liutauras.udacitypopularmovies.presenters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
-import pm.diu.liutauras.udacitypopularmovies.views.View;
+import android.view.View;
+import pm.diu.liutauras.udacitypopularmovies.ui.activities.MovieDetailActivity;
+import pm.diu.liutauras.udacitypopularmovies.views.BaseView;
 import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +15,6 @@ import javax.inject.Inject;
 import pm.diu.liutauras.udacitypopularmovies.domain.GetMoviesUseCase;
 import pm.diu.liutauras.udacitypopularmovies.model.entities.Movie;
 import pm.diu.liutauras.udacitypopularmovies.ui.RecyclerClickListener;
-import pm.diu.liutauras.udacitypopularmovies.ui.activities.MoviesListActivity;
 import pm.diu.liutauras.udacitypopularmovies.views.MoviesListView;
 import rx.Subscription;
 
@@ -48,7 +51,7 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
     isMoviesRequestRunning = false;
   }
 
-  @Override public void attachView(View v) {
+  @Override public void attachView(BaseView v) {
     moviesListView = (MoviesListView) v;
   }
 
@@ -78,8 +81,19 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
     moviesListView.showLoadingView();
   }
 
-  @Override public void onElementClick(int position, ImageView characterImageView) {
+  @Override public void onElementClick(int position, View clickedView) {
+    Intent intent = new Intent (context, MovieDetailActivity.class);
+    Movie selectedMovie = movies.get(position);
+    intent.putExtras(getBundle(selectedMovie));
+    context.startActivity(intent,
+        moviesListView.getActivityOptions(position, clickedView).toBundle());
+  }
+  @NonNull
+  private Bundle getBundle(Movie movie) {
+    Bundle extras = new Bundle();
 
+    extras.putParcelable("SELECTED_MOVIE_DETAILS", movie);
+    return extras;
   }
 
   public void onListEndReached() {

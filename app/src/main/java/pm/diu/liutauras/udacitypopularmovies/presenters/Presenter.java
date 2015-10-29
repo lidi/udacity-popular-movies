@@ -1,7 +1,7 @@
 package pm.diu.liutauras.udacitypopularmovies.presenters;
 
 import android.content.Intent;
-import pm.diu.liutauras.udacitypopularmovies.views.View;
+import pm.diu.liutauras.udacitypopularmovies.views.BaseView;
 
 public interface Presenter {
 
@@ -11,7 +11,7 @@ public interface Presenter {
 
     void onPause();
 
-    void attachView (View v);
+    void attachView (BaseView v);
 
     void attachIncomingIntent (Intent intent);
 
