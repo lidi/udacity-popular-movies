@@ -2,6 +2,7 @@ package pm.diu.liutauras.udacitypopularmovies.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,9 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Po
     return movies.size();
   }
 
+  /**
+   *
+   */
   public class PosterViewHolder extends RecyclerView.ViewHolder {
     @Bind(R.id.item_poster) ImageView moviePosterView;
 
@@ -52,9 +56,7 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Po
     }
 
     public void bindMovie(Movie movie) {
-      // TODO: Figure out image resource here
-      moviePosterView.setImageResource(movie.getPosterResource());
-
+      Log.v("#L#", movie.getPosterUri());
       Glide.with(context)
           .load(movie.getPosterUri())
           .crossFade()

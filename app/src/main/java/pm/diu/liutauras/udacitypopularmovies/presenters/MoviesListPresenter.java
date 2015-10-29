@@ -3,7 +3,7 @@ package pm.diu.liutauras.udacitypopularmovies.presenters;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.view.View;
+import pm.diu.liutauras.udacitypopularmovies.views.View;
 import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import pm.diu.liutauras.udacitypopularmovies.domain.GetMoviesUseCase;
 import pm.diu.liutauras.udacitypopularmovies.model.entities.Movie;
 import pm.diu.liutauras.udacitypopularmovies.ui.RecyclerClickListener;
+import pm.diu.liutauras.udacitypopularmovies.ui.activities.MoviesListActivity;
 import pm.diu.liutauras.udacitypopularmovies.views.MoviesListView;
 import rx.Subscription;
 
@@ -33,6 +34,13 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
     movies = new ArrayList<>();
   }
 
+  @Override public void onStart() {
+    // Not used
+  }
+
+  @Override public void onStop() {
+    // Not used
+  }
 
   @Override public void onPause() {
 
@@ -53,15 +61,17 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
   }
 
   private void getMovies() {
+    Log.v("#L#", "Getting movies");
     isMoviesRequestRunning = true;
     showLoadingUI();
 
     moviesSubscription = moviesUseCase.execute().subscribe(movies -> {
+          Log.v("#L#", String.valueOf(movies.size()));
           this.movies.addAll(movies);
           moviesListView.bindMoviesList(this.movies);
           moviesListView.showMovieList();
           isMoviesRequestRunning = false;
-        }, error -> Log.v("Error loading movies", error.getMessage()));
+        }, error -> Log.v("#L# Error loading movies", error.getMessage()));
   }
 
   private void showLoadingUI() {
@@ -69,7 +79,10 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
   }
 
   @Override public void onElementClick(int position, ImageView characterImageView) {
-    //TODO
+
   }
 
+  public void onListEndReached() {
+
+  }
 }

@@ -4,7 +4,8 @@ import android.app.ActivityOptions;
 import java.util.List;
 import pm.diu.liutauras.udacitypopularmovies.model.entities.Movie;
 
-public interface MoviesListView {
+public interface MoviesListView extends View{
+
   void bindMoviesList(List<Movie> movies);
 
   void showMovieList();
@@ -31,7 +32,7 @@ public interface MoviesListView {
 
   //void hideEmptyIndicator();
 
-  void updateMoviesList(int moviesLimit);
+  //void updateMoviesList(int moviesLimit);
 
   ActivityOptions getActivityOptions(int position, android.view.View clickedView);
 }

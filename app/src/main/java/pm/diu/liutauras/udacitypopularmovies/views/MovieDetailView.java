@@ -1,7 +1,9 @@
 package pm.diu.liutauras.udacitypopularmovies.views;
 
-/**
- * Created by lidi on 28/10/15.
- */
-public interface MovieDetailView {
+public interface MovieDetailView extends View{
+  void showMoviePoster (String url);
+  void showMovieTitle (String title);
+  void showMovieYear (String year);
+  void showMovieOverview (String overview);
+  void showMovieVoteAverage (String voteAverage);
 }

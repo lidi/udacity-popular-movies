@@ -1,5 +1,6 @@
 package pm.diu.liutauras.udacitypopularmovies.model.entities;
 
+import android.util.Log;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 
@@ -30,6 +31,7 @@ public class Movie {
   private int posterResource;
 
   public String getPosterUri(){
+    Log.v("Poster uri", Joiner.on("").skipNulls().join(Lists.newArrayList(IMAGE_BASE_URI, SIZE, poster_path)));
     return Joiner.on("").skipNulls().join(Lists.newArrayList(IMAGE_BASE_URI, SIZE, poster_path));
   }
 

@@ -4,7 +4,8 @@ import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
 import pm.diu.liutauras.udacitypopularmovies.UdacityPopularMoviesApplication;
-//import pm.diu.liutauras.udacitypopularmovies.model.repository.Repository;
+import pm.diu.liutauras.udacitypopularmovies.model.rest.RestRepository;
+import pm.diu.liutauras.udacitypopularmovies.model.repository.Repository;
 
 @Module
 public class AppModule {
@@ -19,7 +20,7 @@ public class AppModule {
     return application;
   }
 
-  //@Provides @Singleton Repository provideDataRepository (RestRepository restRepository) {
-  //  return restRepository;
-  //}
+  @Provides @Singleton Repository provideDataRepository (RestRepository restRepository) {
+    return restRepository;
+  }
 }

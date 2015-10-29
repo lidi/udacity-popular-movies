@@ -8,6 +8,8 @@ import rx.Observable;
 
 public interface TheMovieDBApi {
 
+  String BASE_URL = "http://api.themoviedb.org";
+
   @GET("3/discover/movie")
   Observable<List<Movie>> loadMovies(@Query("api_key") String api_key);
 
