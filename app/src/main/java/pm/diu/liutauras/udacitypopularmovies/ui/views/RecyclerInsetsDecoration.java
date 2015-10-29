@@ -8,10 +8,10 @@ import pm.diu.liutauras.udacitypopularmovies.R;
 
 public class RecyclerInsetsDecoration extends RecyclerView.ItemDecoration {
 
-  private int mInsets;
+  private int insets;
 
   public RecyclerInsetsDecoration(Context context) {
-    mInsets = context.getResources().getDimensionPixelSize(R.dimen.insets);
+    insets = context.getResources().getDimensionPixelSize(R.dimen.insets);
   }
 
   @Override
@@ -19,6 +19,6 @@ public class RecyclerInsetsDecoration extends RecyclerView.ItemDecoration {
 
     //We can supply forced insets for each item view here in the Rect
     super.getItemOffsets(outRect, view, parent, state);
-    outRect.set(mInsets, mInsets, mInsets, mInsets);
+    outRect.set(insets, insets, insets, insets);
   }
 }

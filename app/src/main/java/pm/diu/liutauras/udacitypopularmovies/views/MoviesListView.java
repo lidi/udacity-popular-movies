@@ -12,15 +12,17 @@ public interface MoviesListView extends BaseView {
 
   void hideMovieList();
 
+  void showLoadingView();
+
+  void hideLoadingView();
+
+  void updateMoviesList(int moviesLimit);
+
   //void showLoadingMoreMoviesIndicator();
 
   //void hideLoadingMoreMoviesIndicator();
 
   //void hideLoadingIndicator ();
-
-  void showLoadingView();
-
-  void hideLoadingView();
 
   //void showLightError();
 
@@ -31,8 +33,6 @@ public interface MoviesListView extends BaseView {
   //void showEmptyIndicator();
 
   //void hideEmptyIndicator();
-
-  //void updateMoviesList(int moviesLimit);
 
   ActivityOptions getActivityOptions(int position, android.view.View clickedView);
 }

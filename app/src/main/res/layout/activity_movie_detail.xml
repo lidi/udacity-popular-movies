@@ -1,16 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-    <ImageView
-        android:id="@+id/movie_detail_poster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
+    <GridLayout
+        android:id="@+id/movie_detail_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        >
+        <TextView
+            android:id="@+id/movie_detail_title"
+            android:layout_columnSpan="2"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/titleBackground"
+            android:textSize="25sp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:textColor="@color/titleColor"
+            tools:text="Avengers"
+            />
+        <ImageView
+            android:id="@+id/movie_detail_poster"
+            android:layout_column="0"
+            android:layout_width="200dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_columnSpan="1"
+            android:contentDescription="@string/movie_poster"
+            />
+      <TextView
+          android:id="@+id/movie_detail_year"
+          android:layout_columnSpan="1"
+          android:layout_column="1"
+          android:layout_row="1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="35sp"
+          android:layout_marginTop="20dp"
+          android:layout_marginStart="30dp"
+          tools:text="2015"
+          />
+      <TextView
+          android:id="@+id/movie_detail_votes"
+          android:layout_columnSpan="1"
+          android:layout_column="1"
+          android:layout_row="1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20sp"
+          android:textStyle="bold"
+          android:layout_marginStart="30dp"
+          android:layout_marginTop="50dp"
+          tools:text="8.3/10"
+          />
+      <TextView
+          android:id="@+id/movie_detail_overview"
+          android:layout_columnSpan="2"
+          android:layout_row="2"
+          android:layout_width="match_parent"
+          android:layout_height="175dp"
+          android:layout_marginStart="5dp"
+          android:padding="15dp"
+          tools:text="A lot of information about movie..."
+          />
+    </GridLayout>
 </android.support.design.widget.CoordinatorLayout>

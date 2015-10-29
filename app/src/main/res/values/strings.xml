@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">Udacity Popular Movies</string>
+  <string name="activity_movie_detail_name">Movie Detail</string>
+  <string name="movie_poster">Movie poster</string>
 </resources>

@@ -6,12 +6,8 @@ import android.util.Log;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 
+@SuppressWarnings("unused")
 public class Movie implements Parcelable {
-
-  public final static String [] THE_MOVIE_DB_API_MOVIE_FIELDS = {
-      "id", "adult", "backdrop_path", "original_language", "original_title", "overview", "poster_path",
-      "popularity", "release_date", "title", "video", "vote_average", "vote_count"
-  };
 
   private final static String IMAGE_BASE_URI = "http://image.tmdb.org/t/p/";
   private final static String SIZE = "w185";
@@ -83,7 +79,6 @@ public class Movie implements Parcelable {
   }
 
   public String getPosterUri(){
-    Log.v("Poster uri", Joiner.on("").skipNulls().join(Lists.newArrayList(IMAGE_BASE_URI, SIZE, poster_path)));
     return Joiner.on("").skipNulls().join(Lists.newArrayList(IMAGE_BASE_URI, SIZE, poster_path));
   }
 
@@ -190,17 +185,6 @@ public class Movie implements Parcelable {
   public void setVoteCount(Integer voteCount) {
     this.vote_count = voteCount;
   }
-
-
-  //private List<Integer> genre_ids = new ArrayList<>();
-  //public List<Integer> getGenreIds() {
-  //  return genre_ids;
-  //}
-  //
-  //public void setGenreIds(List<Integer> genreIds) {
-  //  this.genre_ids = genreIds;
-  //}
-
 }
 
 

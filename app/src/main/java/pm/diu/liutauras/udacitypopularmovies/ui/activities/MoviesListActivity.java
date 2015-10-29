@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
 import java.util.List;
 import javax.inject.Inject;
+
 import pm.diu.liutauras.udacitypopularmovies.R;
 import pm.diu.liutauras.udacitypopularmovies.UdacityPopularMoviesApplication;
 import pm.diu.liutauras.udacitypopularmovies.internal.di.components.DaggerMoviesComponent;
@@ -27,15 +29,11 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListV
 
   @Inject MoviesListPresenter moviesListPresenter;
 
-  private MoviesListAdapter movieListAdapter;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    Log.v("#L#", "Creating");
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_movies_list);
     ButterKnife.bind(this);
-
 
     initializeDependencyInjector();
     initializeRecyclerView();
@@ -76,7 +74,6 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListV
   };
 
   private void initializePresenter() {
-    Log.v("#L#", "Init presenter");
     moviesListPresenter.attachView(this);
     moviesListPresenter.onCreate();
   }
@@ -91,15 +88,10 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListV
   }
 
   @Override public void bindMoviesList(List<Movie> movies) {
-    Log.v("#L#", String.valueOf(movies.size()));
-    movieListAdapter = new MoviesListAdapter(movies,
-        this, moviesListPresenter);
-
-    moviesRecycler.setAdapter(movieListAdapter);
+    moviesRecycler.setAdapter(new MoviesListAdapter(movies, this, moviesListPresenter));
   }
 
   @Override public void showMovieList() {
-    Log.v("#L#", "Showing");
     if (moviesRecycler.getVisibility() == View.GONE ||
         moviesRecycler.getVisibility() == View.INVISIBLE) {
 
@@ -112,16 +104,16 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListV
   }
 
   @Override public void showLoadingView() {
-
+    //Not implemented
   }
 
   @Override public void hideLoadingView() {
-
+    //Not implemented
   }
 
-  //@Override public void updateMoviesList(int moviesLimit) {
-  //
-  //}
+  @Override public void updateMoviesList(int moviesLimit) {
+    //Not implemented
+  }
 
   @Override public ActivityOptions getActivityOptions(int position, View clickedView) {
     return ActivityOptions.makeSceneTransitionAnimation(

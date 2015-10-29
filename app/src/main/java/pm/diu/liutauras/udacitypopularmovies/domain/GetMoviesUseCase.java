@@ -8,12 +8,12 @@ import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class GetMoviesUseCase implements Usecase<List<Movie>> {
+public class GetMoviesUsecase implements Usecase<List<Movie>> {
 
   private final Repository repository;
 
   @Inject
-  public GetMoviesUseCase(Repository repository) {
+  public GetMoviesUsecase(Repository repository) {
     this.repository = repository;
   }
 

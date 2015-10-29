@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="grey.light">#bcbcbc</color>
+
+    <color name="titleBackground">#8E9231</color>
+    <color name="titleColor">#FFF</color>
 </resources>
