@@ -21,6 +21,8 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
   private final GetMoviesUsecase moviesUseCase;
   private final Context context;
 
+  private boolean isMoviesRequestRunning;
+
   private Subscription moviesSubscription;
 
   private List<Movie> movies;
@@ -43,6 +45,7 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
 
   @Override public void onPause() {
     moviesSubscription.unsubscribe();
+    isMoviesRequestRunning = false;
   }
 
   @Override public void attachView(BaseView v) {
@@ -57,15 +60,25 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
   }
 
   private void getMovies() {
+    isMoviesRequestRunning = true;
     showLoadingUI();
 
     moviesSubscription = moviesUseCase.execute().subscribe(movies -> {
-          this.movies.addAll(movies);
-          moviesListView.bindMoviesList(this.movies);
-          moviesListView.showMovieList();
-        }, error -> Log.v("Error loading movies", error.getMessage()));
+      this.movies.addAll(movies);
+      moviesListView.bindMoviesList(this.movies);
+      moviesListView.showMovieList();
+      isMoviesRequestRunning = false;
+    }, error -> Log.v("Error loading movies", error.getMessage()));
   }
 
+  private void getMoreMovies() {
+    isMoviesRequestRunning = true;
+    showLoadingUI();
+    moviesSubscription = moviesUseCase.executeNextPage().subscribe(newMovies -> {
+      this.movies.addAll(newMovies);
+      moviesListView.updateMoviesList(0);
+    });
+  }
   private void showLoadingUI() {
     moviesListView.showLoadingView();
   }
@@ -86,6 +99,6 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
   }
 
   public void onListEndReached() {
-
+    if (!isMoviesRequestRunning) getMoreMovies();
   }
 }

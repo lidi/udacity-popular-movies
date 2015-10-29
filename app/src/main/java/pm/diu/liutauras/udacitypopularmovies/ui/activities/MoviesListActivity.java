@@ -29,6 +29,8 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListV
 
   @Inject MoviesListPresenter moviesListPresenter;
 
+  private MoviesListAdapter moviesListAdapter;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -88,7 +90,8 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListV
   }
 
   @Override public void bindMoviesList(List<Movie> movies) {
-    moviesRecycler.setAdapter(new MoviesListAdapter(movies, this, moviesListPresenter));
+    moviesListAdapter = new MoviesListAdapter(movies, this, moviesListPresenter);
+    moviesRecycler.setAdapter(moviesListAdapter);
   }
 
   @Override public void showMovieList() {
@@ -111,8 +114,8 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListV
     //Not implemented
   }
 
-  @Override public void updateMoviesList(int moviesLimit) {
-    //Not implemented
+  @Override public void updateMoviesList(int moviesAdded) {
+    moviesListAdapter.notifyItemRangeChanged(moviesListAdapter.getItemCount() + moviesAdded, moviesAdded);
   }
 
   @Override public ActivityOptions getActivityOptions(int position, View clickedView) {

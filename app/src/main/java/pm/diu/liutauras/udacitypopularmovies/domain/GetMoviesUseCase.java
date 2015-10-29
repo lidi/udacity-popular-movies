@@ -11,6 +11,7 @@ import rx.schedulers.Schedulers;
 public class GetMoviesUsecase implements Usecase<List<Movie>> {
 
   private final Repository repository;
+  private int page = 1;
 
   @Inject
   public GetMoviesUsecase(Repository repository) {
@@ -22,5 +23,16 @@ public class GetMoviesUsecase implements Usecase<List<Movie>> {
     return repository.getMovies()
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread());
+  }
+
+  @Override
+  public Observable<List<Movie>> executeNextPage() {
+    page++;
+    return repository.getNextMoviesPage(page)
+        .subscribeOn(Schedulers.newThread())
+        .observeOn(AndroidSchedulers.mainThread())
+        .doOnError(throwable -> {
+          page--;
+        });
   }
 }

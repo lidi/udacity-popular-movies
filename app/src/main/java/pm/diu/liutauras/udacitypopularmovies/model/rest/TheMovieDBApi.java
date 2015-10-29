@@ -13,4 +13,7 @@ public interface TheMovieDBApi {
   @GET("3/discover/movie")
   Observable<List<Movie>> loadMovies(@Query("api_key") String api_key);
 
+  @GET("3/discover/movie")
+  Observable<List<Movie>> loadMovies(@Query("api_key") String api_key, @Query("page") int page);
+
 }

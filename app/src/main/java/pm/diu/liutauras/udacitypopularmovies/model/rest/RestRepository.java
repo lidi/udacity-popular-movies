@@ -1,6 +1,5 @@
 package pm.diu.liutauras.udacitypopularmovies.model.rest;
 
-import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -22,7 +21,6 @@ public class RestRepository implements Repository{
 
   @Inject public RestRepository() {
 
-    Log.v("#L#", "Initiating rest repository");
     Gson gson = new GsonBuilder()
         .registerTypeAdapter(new TypeToken<List<Movie>>() {}.getType(), new MovieResultsDeserializer())
         .create();
@@ -37,5 +35,9 @@ public class RestRepository implements Repository{
   }
   @Override public Observable<List<Movie>> getMovies() {
     return theMovieDBApi.loadMovies(Key.KEY);
+  }
+
+  @Override public Observable<List<Movie>> getNextMoviesPage(int page) {
+    return theMovieDBApi.loadMovies(Key.KEY, page);
   }
 }

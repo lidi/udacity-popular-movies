@@ -5,5 +5,6 @@ import pm.diu.liutauras.udacitypopularmovies.model.entities.Movie;
 import rx.Observable;
 
 public interface Repository {
-  Observable<List<Movie>> getMovies ();
+  Observable<List<Movie>> getMovies();
+  Observable<List<Movie>> getNextMoviesPage(int page);
 }
