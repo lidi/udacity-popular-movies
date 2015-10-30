@@ -61,6 +61,7 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Po
     public void bindMovie(Movie movie) {
       Glide.with(context)
           .load(movie.getPosterUri())
+          .placeholder(R.drawable.no_poster)
           .crossFade()
           .into(moviePosterView);
     }

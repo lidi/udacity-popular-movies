@@ -38,7 +38,7 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
   }
 
   @Override public void showMoviePoster(String url) {
-    Glide.with(this).load(url).into(movieDetailPoster);
+    Glide.with(this).load(url).placeholder(R.drawable.no_poster).into(movieDetailPoster);
   }
 
   @Override public void showMovieTitle(String title) {

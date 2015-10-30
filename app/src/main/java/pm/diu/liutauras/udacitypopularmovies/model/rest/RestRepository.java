@@ -33,7 +33,7 @@ public class RestRepository implements Repository{
     theMovieDBApi =  theMovieDBApiAdapter.create(TheMovieDBApi.class);
   }
 
-  @Override public Observable<List<Movie>> getNextMoviesPage(int page) {
+  @Override public Observable<List<Movie>> getMoviesPage(int page) {
     return theMovieDBApi.loadMovies(Key.KEY, page);
   }
 

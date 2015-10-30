@@ -70,8 +70,10 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
     showLoadingUI();
 
     moviesSubscription = moviesUseCase.executeSortBy(sortCriteria).subscribe(movies -> {
+
       this.movies.clear();
       this.movies.addAll(movies);
+      moviesListView.hideMovieList();
       moviesListView.bindMoviesList(this.movies);
       moviesListView.showMovieList();
       moviesListView.hideEmptyIndicator();
@@ -103,8 +105,7 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
       moviesListView.updateMoviesList(newMovies.size());
       moviesListView.hideLoadingIndicator();
       isMoviesRequestRunning = false;
-
-    });
+    }, error -> Log.v("Error loading movies", error.getMessage()));
   }
   private void showLoadingUI() {
     moviesListView.showLoadingView();

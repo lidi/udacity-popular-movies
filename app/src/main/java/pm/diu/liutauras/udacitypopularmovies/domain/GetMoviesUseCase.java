@@ -20,7 +20,7 @@ public class GetMoviesUsecase implements Usecase<List<Movie>> {
 
   @Override
   public Observable<List<Movie>> execute() {
-    return repository.getNextMoviesPage(page)
+    return repository.getMoviesPage(page)
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread());
   }
@@ -35,7 +35,7 @@ public class GetMoviesUsecase implements Usecase<List<Movie>> {
   @Override
   public Observable<List<Movie>> executeNextPage() {
     page++;
-    return repository.getNextMoviesPage(page)
+    return repository.getMoviesPage(page)
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread())
         .doOnError(throwable -> page--);
