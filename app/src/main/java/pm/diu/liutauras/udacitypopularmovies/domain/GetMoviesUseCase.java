@@ -38,8 +38,6 @@ public class GetMoviesUsecase implements Usecase<List<Movie>> {
     return repository.getNextMoviesPage(page)
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread())
-        .doOnError(throwable -> {
-          page--;
-        });
+        .doOnError(throwable -> page--);
   }
 }

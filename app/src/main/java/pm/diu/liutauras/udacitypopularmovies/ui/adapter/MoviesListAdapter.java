@@ -41,6 +41,11 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Po
     return movies.size();
   }
 
+  public void setMovies(List<Movie> movies) {
+    this.movies.addAll(movies);
+    notifyDataSetChanged();
+  }
+
   /**
    * Placeholder class
    */
@@ -51,7 +56,6 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Po
       super(itemView);
       ButterKnife.bind(this, itemView);
       bindListener(itemView, recyclerClickListener);
-
     }
 
     public void bindMovie(Movie movie) {

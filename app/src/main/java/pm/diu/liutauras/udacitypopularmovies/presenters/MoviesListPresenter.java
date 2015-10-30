@@ -67,10 +67,10 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
 
   private void getMoviesSortBy(String sortCriteria) {
     isMoviesRequestRunning = true;
-    moviesListView.hideMovieList();
     showLoadingUI();
 
     moviesSubscription = moviesUseCase.executeSortBy(sortCriteria).subscribe(movies -> {
+      this.movies.clear();
       this.movies.addAll(movies);
       moviesListView.bindMoviesList(this.movies);
       moviesListView.showMovieList();
@@ -83,18 +83,21 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
     isMoviesRequestRunning = true;
     showLoadingUI();
 
-    moviesSubscription = moviesUseCase.execute().subscribe(movies -> {
-      this.movies.addAll(movies);
-      moviesListView.bindMoviesList(this.movies);
-      moviesListView.showMovieList();
-      moviesListView.hideEmptyIndicator();
-      isMoviesRequestRunning = false;
-    }, error -> Log.v("Error loading movies", error.getMessage()));
+    moviesSubscription = moviesUseCase.execute()
+        .subscribe(movies -> {
+          this.movies.addAll(movies);
+          moviesListView.bindMoviesList(this.movies);
+          moviesListView.showMovieList();
+          moviesListView.hideEmptyIndicator();
+          isMoviesRequestRunning = false;
+        }, error -> Log.v("Error loading movies", error.getMessage()));
   }
 
   private void getMoreMovies() {
+
     moviesListView.showLoadingMoreMoviesIndicator();
     isMoviesRequestRunning = true;
+
     moviesSubscription = moviesUseCase.executeNextPage().subscribe(newMovies -> {
       this.movies.addAll(newMovies);
       moviesListView.updateMoviesList(newMovies.size());

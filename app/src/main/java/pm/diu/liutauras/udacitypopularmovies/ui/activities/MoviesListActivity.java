@@ -126,7 +126,12 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListV
   }
 
   @Override public void bindMoviesList(List<Movie> movies) {
-    moviesListAdapter = new MoviesListAdapter(movies, this, moviesListPresenter);
+    if (moviesListAdapter == null) {
+      moviesListAdapter = new MoviesListAdapter(movies, this, moviesListPresenter);
+    }
+    else {
+      moviesListAdapter.setMovies(movies);
+    }
     moviesRecycler.setAdapter(moviesListAdapter);
   }
 
