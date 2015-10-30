@@ -16,7 +16,6 @@ import rx.Observable;
 
 public class RestRepository implements Repository{
 
-
   private final TheMovieDBApi theMovieDBApi;
 
   @Inject public RestRepository() {
@@ -33,11 +32,12 @@ public class RestRepository implements Repository{
 
     theMovieDBApi =  theMovieDBApiAdapter.create(TheMovieDBApi.class);
   }
-  @Override public Observable<List<Movie>> getMovies() {
-    return theMovieDBApi.loadMovies(Key.KEY);
-  }
 
   @Override public Observable<List<Movie>> getNextMoviesPage(int page) {
     return theMovieDBApi.loadMovies(Key.KEY, page);
+  }
+
+  @Override public Observable<List<Movie>> getMoviesSortBy(int page, String sortCriteria) {
+    return theMovieDBApi.loadMoviesSortBy(Key.KEY, page, sortCriteria);
   }
 }

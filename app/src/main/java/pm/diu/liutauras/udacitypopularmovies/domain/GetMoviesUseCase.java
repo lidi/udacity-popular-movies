@@ -20,7 +20,14 @@ public class GetMoviesUsecase implements Usecase<List<Movie>> {
 
   @Override
   public Observable<List<Movie>> execute() {
-    return repository.getMovies()
+    return repository.getNextMoviesPage(page)
+        .subscribeOn(Schedulers.newThread())
+        .observeOn(AndroidSchedulers.mainThread());
+  }
+
+  @Override
+  public Observable<List<Movie>> executeSortBy(String sortCriteria) {
+    return repository.getMoviesSortBy(page, sortCriteria)
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread());
   }

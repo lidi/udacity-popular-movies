@@ -11,9 +11,14 @@ public interface TheMovieDBApi {
   String BASE_URL = "http://api.themoviedb.org";
 
   @GET("3/discover/movie")
-  Observable<List<Movie>> loadMovies(@Query("api_key") String api_key);
+  Observable<List<Movie>> loadMovies(
+      @Query("api_key") String api_key,
+      @Query("page") int page);
 
   @GET("3/discover/movie")
-  Observable<List<Movie>> loadMovies(@Query("api_key") String api_key, @Query("page") int page);
+  Observable<List<Movie>> loadMoviesSortBy(
+      @Query("api_key") String api_key,
+      @Query("page") int page,
+      @Query("sort_by") String sortingCriteria);
 
 }

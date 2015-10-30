@@ -5,4 +5,7 @@
 
   <string name="message.loading.more_movies">Loading more movies</string>
   <string name="loading_movies">Loading movies\nplease wait</string>
+
+  <string name="action_sort_by_highest_rated">Sort by highest rated</string>
+  <string name="action_sort_by_most_popular">Sort by most popular</string>
 </resources>

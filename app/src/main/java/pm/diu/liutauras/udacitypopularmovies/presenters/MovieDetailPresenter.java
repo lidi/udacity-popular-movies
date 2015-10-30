@@ -15,23 +15,23 @@ public class MovieDetailPresenter implements Presenter, AdapterView.OnItemSelect
   private PresenterHelper helper = new PresenterHelper();
 
   @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+    // Not implemented
   }
 
   @Override public void onNothingSelected(AdapterView<?> parent) {
-
+    // Not implemented
   }
 
   @Override public void onStart() {
-
+    // Not implemented
   }
 
   @Override public void onStop() {
-
+    // Not implemented
   }
 
   @Override public void onPause() {
-
+    // Not implemented
   }
 
   @Override public void attachView(BaseView v) {
@@ -43,7 +43,11 @@ public class MovieDetailPresenter implements Presenter, AdapterView.OnItemSelect
   }
 
   @Override public void onCreate() {
+    // Not implemented
+  }
 
+  @Override public void onSortBy(String criteria) {
+    // Not implemented
   }
 
   public void initializePresenter() {
@@ -51,10 +55,12 @@ public class MovieDetailPresenter implements Presenter, AdapterView.OnItemSelect
     Bundle extras = intent.getExtras();
     Movie movie = extras.getParcelable("SELECTED_MOVIE_DETAILS");
 
-    movieDetailView.showMoviePoster(movie.getPosterUri());
-    movieDetailView.showMovieTitle(movie.getTitle());
-    movieDetailView.showMovieYear(helper.getYearFromReleaseDate(movie.getReleaseDate()));
-    movieDetailView.showMovieVoteAverage(helper.getVoteAverage(movie.getVoteAverage()));
-    movieDetailView.showMovieOverview(movie.getOverview());
+    if (movie != null) {
+      movieDetailView.showMoviePoster(movie.getPosterUri());
+      movieDetailView.showMovieTitle(movie.getTitle());
+      movieDetailView.showMovieYear(helper.getYearFromReleaseDate(movie.getReleaseDate()));
+      movieDetailView.showMovieVoteAverage(helper.getVoteAverage(movie.getVoteAverage()));
+      movieDetailView.showMovieOverview(movie.getOverview());
+    }
   }
 }

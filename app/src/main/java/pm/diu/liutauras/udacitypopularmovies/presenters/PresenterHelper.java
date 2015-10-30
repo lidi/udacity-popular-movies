@@ -8,6 +8,11 @@ import org.joda.time.format.DateTimeFormatter;
 public class PresenterHelper {
 
   public String getYearFromReleaseDate(String movieReleaseDate) {
+
+    if (movieReleaseDate == null) {
+      return "N\\A";
+    }
+
     DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
 
     LocalDate date = formatter.parseLocalDate(movieReleaseDate);

@@ -16,4 +16,6 @@ public interface Presenter {
     void attachIncomingIntent (Intent intent);
 
     void onCreate();
+
+    void onSortBy(String criteria);
 }

@@ -44,6 +44,7 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
   }
 
   @Override public void onPause() {
+    moviesListView.hideLoadingMoreMoviesIndicator();
     moviesSubscription.unsubscribe();
     isMoviesRequestRunning = false;
   }
@@ -53,10 +54,29 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
   }
 
   @Override public void attachIncomingIntent(Intent intent) {
+    // No need to implement
   }
 
   @Override public void onCreate() {
     getMovies();
+  }
+
+  @Override public void onSortBy(String sortCriteria){
+    getMoviesSortBy(sortCriteria);
+  }
+
+  private void getMoviesSortBy(String sortCriteria) {
+    isMoviesRequestRunning = true;
+    moviesListView.hideMovieList();
+    showLoadingUI();
+
+    moviesSubscription = moviesUseCase.executeSortBy(sortCriteria).subscribe(movies -> {
+      this.movies.addAll(movies);
+      moviesListView.bindMoviesList(this.movies);
+      moviesListView.showMovieList();
+      moviesListView.hideEmptyIndicator();
+      isMoviesRequestRunning = false;
+    }, error -> Log.v("Error loading movies", error.getMessage()));
   }
 
   private void getMovies() {
@@ -77,7 +97,7 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
     isMoviesRequestRunning = true;
     moviesSubscription = moviesUseCase.executeNextPage().subscribe(newMovies -> {
       this.movies.addAll(newMovies);
-      moviesListView.updateMoviesList(0);
+      moviesListView.updateMoviesList(newMovies.size());
       moviesListView.hideLoadingIndicator();
       isMoviesRequestRunning = false;
 
