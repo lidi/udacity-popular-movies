@@ -47,7 +47,7 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Po
   }
 
   /**
-   * Placeholder class
+   * ViewHolder for poster
    */
   public class PosterViewHolder extends RecyclerView.ViewHolder {
     @Bind(R.id.item_poster) ImageView moviePosterView;
