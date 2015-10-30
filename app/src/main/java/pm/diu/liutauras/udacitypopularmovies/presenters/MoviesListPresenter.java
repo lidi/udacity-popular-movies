@@ -67,16 +67,20 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
       this.movies.addAll(movies);
       moviesListView.bindMoviesList(this.movies);
       moviesListView.showMovieList();
+      moviesListView.hideEmptyIndicator();
       isMoviesRequestRunning = false;
     }, error -> Log.v("Error loading movies", error.getMessage()));
   }
 
   private void getMoreMovies() {
+    moviesListView.showLoadingMoreMoviesIndicator();
     isMoviesRequestRunning = true;
-    showLoadingUI();
     moviesSubscription = moviesUseCase.executeNextPage().subscribe(newMovies -> {
       this.movies.addAll(newMovies);
       moviesListView.updateMoviesList(0);
+      moviesListView.hideLoadingIndicator();
+      isMoviesRequestRunning = false;
+
     });
   }
   private void showLoadingUI() {

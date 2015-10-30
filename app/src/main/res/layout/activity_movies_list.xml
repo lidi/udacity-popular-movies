@@ -7,7 +7,12 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       >
-
+    <include
+        android:id="@+id/activity_movies_empty_indicator"
+        layout="@layout/view_loading_movies"
+        android:layout_gravity="center"
+        tools:ignore="IncludeLayoutParam"
+        />
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -15,5 +20,14 @@
         android:id="@+id/activity_movies_recycler"
         tools:listitem="@layout/item_poster"/>
 
+    <ProgressBar
+        android:id="@+id/activity_movies_list_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:visibility="gone"
+        />
   </android.support.design.widget.CoordinatorLayout>
 </merge>

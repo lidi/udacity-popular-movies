@@ -2,11 +2,13 @@ package pm.diu.liutauras.udacitypopularmovies.ui.activities;
 
 import android.app.ActivityOptions;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import android.widget.ProgressBar;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -26,10 +28,14 @@ import pm.diu.liutauras.udacitypopularmovies.views.MoviesListView;
 public class MoviesListActivity extends AppCompatActivity implements MoviesListView {
 
   @Bind(R.id.activity_movies_recycler) RecyclerView moviesRecycler;
+  @Bind(R.id.activity_movies_list_progress) ProgressBar moviesListProgressBar;
+  @Bind(R.id.activity_loading_progress) View progressIndicator;
+  @Bind(R.id.activity_movies_empty_indicator) View emptyIndicator;
 
   @Inject MoviesListPresenter moviesListPresenter;
 
   private MoviesListAdapter moviesListAdapter;
+  private Snackbar loadingMoreMoviesSnack;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,12 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListV
   protected void onStart() {
     super.onStart();
     moviesListPresenter.onStart();
+  }
+
+  @Override
+  protected void onStop() {
+    super.onStop();
+    moviesListPresenter.onStop();
   }
 
   @Override
@@ -107,15 +119,38 @@ public class MoviesListActivity extends AppCompatActivity implements MoviesListV
   }
 
   @Override public void showLoadingView() {
-    //Not implemented
+    progressIndicator.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideLoadingView() {
-    //Not implemented
+    progressIndicator.setVisibility(View.GONE);
   }
 
   @Override public void updateMoviesList(int moviesAdded) {
     moviesListAdapter.notifyItemRangeChanged(moviesListAdapter.getItemCount() + moviesAdded, moviesAdded);
+  }
+
+  @Override public void showLoadingMoreMoviesIndicator() {
+    loadingMoreMoviesSnack = Snackbar.make(moviesRecycler,
+        getString(R.string.message_loading_more_movies), Snackbar.LENGTH_INDEFINITE);
+
+    loadingMoreMoviesSnack.show();
+  }
+
+  @Override public void hideLoadingMoreMoviesIndicator() {
+    if (loadingMoreMoviesSnack != null) loadingMoreMoviesSnack.dismiss();
+  }
+
+  @Override public void hideLoadingIndicator() {
+    loadingMoreMoviesSnack.dismiss();
+  }
+
+  @Override public void showEmptyIndicator() {
+    emptyIndicator.setVisibility(View.VISIBLE);
+  }
+
+  @Override public void hideEmptyIndicator() {
+    emptyIndicator.setVisibility(View.GONE);
   }
 
   @Override public ActivityOptions getActivityOptions(int position, View clickedView) {
