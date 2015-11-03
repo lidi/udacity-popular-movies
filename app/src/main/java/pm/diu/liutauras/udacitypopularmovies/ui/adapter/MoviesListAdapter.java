@@ -62,7 +62,7 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Po
       Glide.with(context)
           .load(movie.getPosterUri())
           .placeholder(R.drawable.no_poster)
-          .crossFade()
+          .dontAnimate() // TODO: Figure out why changing this to crossfade() makes horizontal divider line so much thicker.
           .into(moviePosterView);
     }
 
