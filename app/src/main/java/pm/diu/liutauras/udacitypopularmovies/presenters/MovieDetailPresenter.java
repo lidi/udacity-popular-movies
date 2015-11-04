@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import org.parceler.Parcel;
+import org.parceler.Parcels;
 import pm.diu.liutauras.udacitypopularmovies.model.entities.Movie;
 import pm.diu.liutauras.udacitypopularmovies.views.BaseView;
 import pm.diu.liutauras.udacitypopularmovies.views.MovieDetailView;
@@ -53,7 +55,7 @@ public class MovieDetailPresenter implements Presenter, AdapterView.OnItemSelect
   public void initializePresenter() {
 
     Bundle extras = intent.getExtras();
-    Movie movie = extras.getParcelable("SELECTED_MOVIE_DETAILS");
+    Movie movie = Parcels.unwrap(extras.getParcelable("SELECTED_MOVIE_DETAILS"));
 
     if (movie != null) {
       movieDetailView.showMoviePoster(movie.getPosterUri());

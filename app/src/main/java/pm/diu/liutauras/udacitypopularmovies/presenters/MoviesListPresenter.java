@@ -3,12 +3,15 @@ package pm.diu.liutauras.udacitypopularmovies.presenters;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
+import org.parceler.Parcel;
+import org.parceler.Parcels;
 import pm.diu.liutauras.udacitypopularmovies.domain.GetMoviesUsecase;
 import pm.diu.liutauras.udacitypopularmovies.model.entities.Movie;
 import pm.diu.liutauras.udacitypopularmovies.ui.RecyclerClickListener;
@@ -122,7 +125,7 @@ public class MoviesListPresenter implements Presenter, RecyclerClickListener {
   private Bundle getBundle(Movie movie) {
     Bundle extras = new Bundle();
 
-    extras.putParcelable("SELECTED_MOVIE_DETAILS", movie);
+    extras.putParcelable("SELECTED_MOVIE_DETAILS", Parcels.wrap(movie));
     return extras;
   }
 
