@@ -2,8 +2,10 @@ package pm.diu.liutauras.udacitypopularmovies.ui.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
@@ -55,5 +57,9 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
 
   @Override public void showMovieVoteAverage(String voteAverage) {
     moveDetailVotes.setText(voteAverage);
+  }
+
+  public void markAsFavorite(View view){
+    Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show();
   }
 }
